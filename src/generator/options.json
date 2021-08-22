@@ -1,0 +1,16 @@
+{
+  "featuresUniverse": ["A","B","C","D","E","F","G","H","I","J"],
+  "numberOfActivatedFeatures": 3,
+
+  "conjunctionProbability": 0.5,
+  "disjunctionProbability": 0.5,
+
+  "setsUniverse": ["Node", "Topic", "Param"],
+  "numberOfSets": 2,
+  "numberOfElements": 5,
+
+  "relationsUniverse": ["subscribes", "publishes", "param"],
+  "numberOfRelations": 1,
+  "typesOfRelations": [["$0","$1"]],
+  "presenceProbabilityOfRelations": [1.0]
+}

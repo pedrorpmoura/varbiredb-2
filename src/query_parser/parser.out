@@ -1,0 +1,694 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> query
+Rule 1     query -> compose1
+Rule 2     compose1 -> compose1 OR compose2
+Rule 3     compose1 -> compose2
+Rule 4     compose2 -> compose2 AND atomic
+Rule 5     compose2 -> atomic
+Rule 6     atomic -> SOME expression
+Rule 7     atomic -> NO expression
+Rule 8     atomic -> expression IN expression
+Rule 9     atomic -> NOT atomic
+Rule 10    atomic -> ( compose1 )
+Rule 11    expression -> expression + term
+Rule 12    expression -> expression & term
+Rule 13    expression -> expression - term
+Rule 14    expression -> term
+Rule 15    term -> term . term1
+Rule 16    term -> term1
+Rule 17    term1 -> ID
+Rule 18    term1 -> ~ term1
+Rule 19    term1 -> ( expression )
+
+Terminals, with rules where they appear
+
+&                    : 12
+(                    : 10 19
+)                    : 10 19
++                    : 11
+-                    : 13
+.                    : 15
+AND                  : 4
+ID                   : 17
+IN                   : 8
+NO                   : 7
+NOT                  : 9
+OR                   : 2
+SOME                 : 6
+error                : 
+~                    : 18
+
+Nonterminals, with rules where they appear
+
+atomic               : 4 5 9
+compose1             : 1 2 10
+compose2             : 2 3 4
+expression           : 6 7 8 8 11 12 13 19
+query                : 0
+term                 : 11 12 13 14 15
+term1                : 15 16 18
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . query
+    (1) query -> . compose1
+    (2) compose1 -> . compose1 OR compose2
+    (3) compose1 -> . compose2
+    (4) compose2 -> . compose2 AND atomic
+    (5) compose2 -> . atomic
+    (6) atomic -> . SOME expression
+    (7) atomic -> . NO expression
+    (8) atomic -> . expression IN expression
+    (9) atomic -> . NOT atomic
+    (10) atomic -> . ( compose1 )
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    SOME            shift and go to state 5
+    NO              shift and go to state 7
+    NOT             shift and go to state 8
+    (               shift and go to state 9
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+
+    query                          shift and go to state 1
+    compose1                       shift and go to state 2
+    compose2                       shift and go to state 3
+    atomic                         shift and go to state 4
+    expression                     shift and go to state 6
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 1
+
+    (0) S' -> query .
+
+
+
+state 2
+
+    (1) query -> compose1 .
+    (2) compose1 -> compose1 . OR compose2
+
+    $end            reduce using rule 1 (query -> compose1 .)
+    OR              shift and go to state 14
+
+
+state 3
+
+    (3) compose1 -> compose2 .
+    (4) compose2 -> compose2 . AND atomic
+
+    OR              reduce using rule 3 (compose1 -> compose2 .)
+    $end            reduce using rule 3 (compose1 -> compose2 .)
+    )               reduce using rule 3 (compose1 -> compose2 .)
+    AND             shift and go to state 15
+
+
+state 4
+
+    (5) compose2 -> atomic .
+
+    AND             reduce using rule 5 (compose2 -> atomic .)
+    OR              reduce using rule 5 (compose2 -> atomic .)
+    $end            reduce using rule 5 (compose2 -> atomic .)
+    )               reduce using rule 5 (compose2 -> atomic .)
+
+
+state 5
+
+    (6) atomic -> SOME . expression
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    expression                     shift and go to state 16
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 6
+
+    (8) atomic -> expression . IN expression
+    (11) expression -> expression . + term
+    (12) expression -> expression . & term
+    (13) expression -> expression . - term
+
+    IN              shift and go to state 18
+    +               shift and go to state 19
+    &               shift and go to state 20
+    -               shift and go to state 21
+
+
+state 7
+
+    (7) atomic -> NO . expression
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    expression                     shift and go to state 22
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 8
+
+    (9) atomic -> NOT . atomic
+    (6) atomic -> . SOME expression
+    (7) atomic -> . NO expression
+    (8) atomic -> . expression IN expression
+    (9) atomic -> . NOT atomic
+    (10) atomic -> . ( compose1 )
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    SOME            shift and go to state 5
+    NO              shift and go to state 7
+    NOT             shift and go to state 8
+    (               shift and go to state 9
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+
+    atomic                         shift and go to state 23
+    expression                     shift and go to state 6
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 9
+
+    (10) atomic -> ( . compose1 )
+    (19) term1 -> ( . expression )
+    (2) compose1 -> . compose1 OR compose2
+    (3) compose1 -> . compose2
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (4) compose2 -> . compose2 AND atomic
+    (5) compose2 -> . atomic
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (6) atomic -> . SOME expression
+    (7) atomic -> . NO expression
+    (8) atomic -> . expression IN expression
+    (9) atomic -> . NOT atomic
+    (10) atomic -> . ( compose1 )
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    SOME            shift and go to state 5
+    NO              shift and go to state 7
+    NOT             shift and go to state 8
+    (               shift and go to state 9
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+
+    compose1                       shift and go to state 24
+    expression                     shift and go to state 25
+    compose2                       shift and go to state 3
+    term                           shift and go to state 10
+    atomic                         shift and go to state 4
+    term1                          shift and go to state 11
+
+state 10
+
+    (14) expression -> term .
+    (15) term -> term . . term1
+
+    IN              reduce using rule 14 (expression -> term .)
+    +               reduce using rule 14 (expression -> term .)
+    &               reduce using rule 14 (expression -> term .)
+    -               reduce using rule 14 (expression -> term .)
+    AND             reduce using rule 14 (expression -> term .)
+    OR              reduce using rule 14 (expression -> term .)
+    $end            reduce using rule 14 (expression -> term .)
+    )               reduce using rule 14 (expression -> term .)
+    .               shift and go to state 26
+
+
+state 11
+
+    (16) term -> term1 .
+
+    .               reduce using rule 16 (term -> term1 .)
+    IN              reduce using rule 16 (term -> term1 .)
+    +               reduce using rule 16 (term -> term1 .)
+    &               reduce using rule 16 (term -> term1 .)
+    -               reduce using rule 16 (term -> term1 .)
+    AND             reduce using rule 16 (term -> term1 .)
+    OR              reduce using rule 16 (term -> term1 .)
+    $end            reduce using rule 16 (term -> term1 .)
+    )               reduce using rule 16 (term -> term1 .)
+
+
+state 12
+
+    (17) term1 -> ID .
+
+    .               reduce using rule 17 (term1 -> ID .)
+    IN              reduce using rule 17 (term1 -> ID .)
+    +               reduce using rule 17 (term1 -> ID .)
+    &               reduce using rule 17 (term1 -> ID .)
+    -               reduce using rule 17 (term1 -> ID .)
+    AND             reduce using rule 17 (term1 -> ID .)
+    OR              reduce using rule 17 (term1 -> ID .)
+    $end            reduce using rule 17 (term1 -> ID .)
+    )               reduce using rule 17 (term1 -> ID .)
+
+
+state 13
+
+    (18) term1 -> ~ . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    term1                          shift and go to state 27
+
+state 14
+
+    (2) compose1 -> compose1 OR . compose2
+    (4) compose2 -> . compose2 AND atomic
+    (5) compose2 -> . atomic
+    (6) atomic -> . SOME expression
+    (7) atomic -> . NO expression
+    (8) atomic -> . expression IN expression
+    (9) atomic -> . NOT atomic
+    (10) atomic -> . ( compose1 )
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    SOME            shift and go to state 5
+    NO              shift and go to state 7
+    NOT             shift and go to state 8
+    (               shift and go to state 9
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+
+    compose2                       shift and go to state 28
+    atomic                         shift and go to state 4
+    expression                     shift and go to state 6
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 15
+
+    (4) compose2 -> compose2 AND . atomic
+    (6) atomic -> . SOME expression
+    (7) atomic -> . NO expression
+    (8) atomic -> . expression IN expression
+    (9) atomic -> . NOT atomic
+    (10) atomic -> . ( compose1 )
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    SOME            shift and go to state 5
+    NO              shift and go to state 7
+    NOT             shift and go to state 8
+    (               shift and go to state 9
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+
+    atomic                         shift and go to state 29
+    expression                     shift and go to state 6
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 16
+
+    (6) atomic -> SOME expression .
+    (11) expression -> expression . + term
+    (12) expression -> expression . & term
+    (13) expression -> expression . - term
+
+    AND             reduce using rule 6 (atomic -> SOME expression .)
+    OR              reduce using rule 6 (atomic -> SOME expression .)
+    $end            reduce using rule 6 (atomic -> SOME expression .)
+    )               reduce using rule 6 (atomic -> SOME expression .)
+    +               shift and go to state 19
+    &               shift and go to state 20
+    -               shift and go to state 21
+
+
+state 17
+
+    (19) term1 -> ( . expression )
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    expression                     shift and go to state 30
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 18
+
+    (8) atomic -> expression IN . expression
+    (11) expression -> . expression + term
+    (12) expression -> . expression & term
+    (13) expression -> . expression - term
+    (14) expression -> . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    expression                     shift and go to state 31
+    term                           shift and go to state 10
+    term1                          shift and go to state 11
+
+state 19
+
+    (11) expression -> expression + . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    term                           shift and go to state 32
+    term1                          shift and go to state 11
+
+state 20
+
+    (12) expression -> expression & . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    term                           shift and go to state 33
+    term1                          shift and go to state 11
+
+state 21
+
+    (13) expression -> expression - . term
+    (15) term -> . term . term1
+    (16) term -> . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    term                           shift and go to state 34
+    term1                          shift and go to state 11
+
+state 22
+
+    (7) atomic -> NO expression .
+    (11) expression -> expression . + term
+    (12) expression -> expression . & term
+    (13) expression -> expression . - term
+
+    AND             reduce using rule 7 (atomic -> NO expression .)
+    OR              reduce using rule 7 (atomic -> NO expression .)
+    $end            reduce using rule 7 (atomic -> NO expression .)
+    )               reduce using rule 7 (atomic -> NO expression .)
+    +               shift and go to state 19
+    &               shift and go to state 20
+    -               shift and go to state 21
+
+
+state 23
+
+    (9) atomic -> NOT atomic .
+
+    AND             reduce using rule 9 (atomic -> NOT atomic .)
+    OR              reduce using rule 9 (atomic -> NOT atomic .)
+    $end            reduce using rule 9 (atomic -> NOT atomic .)
+    )               reduce using rule 9 (atomic -> NOT atomic .)
+
+
+state 24
+
+    (10) atomic -> ( compose1 . )
+    (2) compose1 -> compose1 . OR compose2
+
+    )               shift and go to state 35
+    OR              shift and go to state 14
+
+
+state 25
+
+    (19) term1 -> ( expression . )
+    (11) expression -> expression . + term
+    (12) expression -> expression . & term
+    (13) expression -> expression . - term
+    (8) atomic -> expression . IN expression
+
+    )               shift and go to state 36
+    +               shift and go to state 19
+    &               shift and go to state 20
+    -               shift and go to state 21
+    IN              shift and go to state 18
+
+
+state 26
+
+    (15) term -> term . . term1
+    (17) term1 -> . ID
+    (18) term1 -> . ~ term1
+    (19) term1 -> . ( expression )
+
+    ID              shift and go to state 12
+    ~               shift and go to state 13
+    (               shift and go to state 17
+
+    term1                          shift and go to state 37
+
+state 27
+
+    (18) term1 -> ~ term1 .
+
+    .               reduce using rule 18 (term1 -> ~ term1 .)
+    IN              reduce using rule 18 (term1 -> ~ term1 .)
+    +               reduce using rule 18 (term1 -> ~ term1 .)
+    &               reduce using rule 18 (term1 -> ~ term1 .)
+    -               reduce using rule 18 (term1 -> ~ term1 .)
+    AND             reduce using rule 18 (term1 -> ~ term1 .)
+    OR              reduce using rule 18 (term1 -> ~ term1 .)
+    $end            reduce using rule 18 (term1 -> ~ term1 .)
+    )               reduce using rule 18 (term1 -> ~ term1 .)
+
+
+state 28
+
+    (2) compose1 -> compose1 OR compose2 .
+    (4) compose2 -> compose2 . AND atomic
+
+    OR              reduce using rule 2 (compose1 -> compose1 OR compose2 .)
+    $end            reduce using rule 2 (compose1 -> compose1 OR compose2 .)
+    )               reduce using rule 2 (compose1 -> compose1 OR compose2 .)
+    AND             shift and go to state 15
+
+
+state 29
+
+    (4) compose2 -> compose2 AND atomic .
+
+    AND             reduce using rule 4 (compose2 -> compose2 AND atomic .)
+    OR              reduce using rule 4 (compose2 -> compose2 AND atomic .)
+    $end            reduce using rule 4 (compose2 -> compose2 AND atomic .)
+    )               reduce using rule 4 (compose2 -> compose2 AND atomic .)
+
+
+state 30
+
+    (19) term1 -> ( expression . )
+    (11) expression -> expression . + term
+    (12) expression -> expression . & term
+    (13) expression -> expression . - term
+
+    )               shift and go to state 36
+    +               shift and go to state 19
+    &               shift and go to state 20
+    -               shift and go to state 21
+
+
+state 31
+
+    (8) atomic -> expression IN expression .
+    (11) expression -> expression . + term
+    (12) expression -> expression . & term
+    (13) expression -> expression . - term
+
+    AND             reduce using rule 8 (atomic -> expression IN expression .)
+    OR              reduce using rule 8 (atomic -> expression IN expression .)
+    $end            reduce using rule 8 (atomic -> expression IN expression .)
+    )               reduce using rule 8 (atomic -> expression IN expression .)
+    +               shift and go to state 19
+    &               shift and go to state 20
+    -               shift and go to state 21
+
+
+state 32
+
+    (11) expression -> expression + term .
+    (15) term -> term . . term1
+
+    IN              reduce using rule 11 (expression -> expression + term .)
+    +               reduce using rule 11 (expression -> expression + term .)
+    &               reduce using rule 11 (expression -> expression + term .)
+    -               reduce using rule 11 (expression -> expression + term .)
+    AND             reduce using rule 11 (expression -> expression + term .)
+    OR              reduce using rule 11 (expression -> expression + term .)
+    $end            reduce using rule 11 (expression -> expression + term .)
+    )               reduce using rule 11 (expression -> expression + term .)
+    .               shift and go to state 26
+
+
+state 33
+
+    (12) expression -> expression & term .
+    (15) term -> term . . term1
+
+    IN              reduce using rule 12 (expression -> expression & term .)
+    +               reduce using rule 12 (expression -> expression & term .)
+    &               reduce using rule 12 (expression -> expression & term .)
+    -               reduce using rule 12 (expression -> expression & term .)
+    AND             reduce using rule 12 (expression -> expression & term .)
+    OR              reduce using rule 12 (expression -> expression & term .)
+    $end            reduce using rule 12 (expression -> expression & term .)
+    )               reduce using rule 12 (expression -> expression & term .)
+    .               shift and go to state 26
+
+
+state 34
+
+    (13) expression -> expression - term .
+    (15) term -> term . . term1
+
+    IN              reduce using rule 13 (expression -> expression - term .)
+    +               reduce using rule 13 (expression -> expression - term .)
+    &               reduce using rule 13 (expression -> expression - term .)
+    -               reduce using rule 13 (expression -> expression - term .)
+    AND             reduce using rule 13 (expression -> expression - term .)
+    OR              reduce using rule 13 (expression -> expression - term .)
+    $end            reduce using rule 13 (expression -> expression - term .)
+    )               reduce using rule 13 (expression -> expression - term .)
+    .               shift and go to state 26
+
+
+state 35
+
+    (10) atomic -> ( compose1 ) .
+
+    AND             reduce using rule 10 (atomic -> ( compose1 ) .)
+    OR              reduce using rule 10 (atomic -> ( compose1 ) .)
+    $end            reduce using rule 10 (atomic -> ( compose1 ) .)
+    )               reduce using rule 10 (atomic -> ( compose1 ) .)
+
+
+state 36
+
+    (19) term1 -> ( expression ) .
+
+    .               reduce using rule 19 (term1 -> ( expression ) .)
+    IN              reduce using rule 19 (term1 -> ( expression ) .)
+    +               reduce using rule 19 (term1 -> ( expression ) .)
+    &               reduce using rule 19 (term1 -> ( expression ) .)
+    -               reduce using rule 19 (term1 -> ( expression ) .)
+    AND             reduce using rule 19 (term1 -> ( expression ) .)
+    OR              reduce using rule 19 (term1 -> ( expression ) .)
+    $end            reduce using rule 19 (term1 -> ( expression ) .)
+    )               reduce using rule 19 (term1 -> ( expression ) .)
+
+
+state 37
+
+    (15) term -> term . term1 .
+
+    .               reduce using rule 15 (term -> term . term1 .)
+    IN              reduce using rule 15 (term -> term . term1 .)
+    +               reduce using rule 15 (term -> term . term1 .)
+    &               reduce using rule 15 (term -> term . term1 .)
+    -               reduce using rule 15 (term -> term . term1 .)
+    AND             reduce using rule 15 (term -> term . term1 .)
+    OR              reduce using rule 15 (term -> term . term1 .)
+    $end            reduce using rule 15 (term -> term . term1 .)
+    )               reduce using rule 15 (term -> term . term1 .)
+
